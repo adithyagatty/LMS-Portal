@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 const sampleCourses = [
     {
@@ -80,16 +81,22 @@ const sampleCourses = [
       ],
     },
   ];
+  
 
 const CourseDetails = () => {
   const { courseId } = useParams();
   const course = sampleCourses.find((c) => c.id === parseInt(courseId));
+  const [selectedVideo, setSelectedVideo] = useState(course?.introVideo);
 
-  const [selectedVideo, setSelectedVideo] = useState(course.introVideo);
+  // Scroll to the top of the page when the component is mounted
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // Empty dependency array ensures this runs only once when the component is mounted
 
   if (!course) return <p className="text-center text-red-600 font-semibold">Course not found</p>;
 
-  return (
+  return (<>
+    <Navbar/>
     <div className="p-6 max-w-6xl mx-auto mt-10">
       {/* Course Header: Video & Details */}
       <div className="flex flex-col md:flex-row gap-6">
@@ -132,7 +139,7 @@ const CourseDetails = () => {
         </div>
       </div>
     </div>
-  );
+    </>);
 };
 
 export default CourseDetails;

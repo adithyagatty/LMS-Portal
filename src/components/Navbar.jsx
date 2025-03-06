@@ -1,20 +1,29 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Search } from 'lucide-react';
 import { Menu, ShoppingCart, User, LogOut, BookOpen } from "lucide-react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md p-4 flex items-center justify-between">
+    <nav className="bg-white shadow-md p-4 flex items-center justify-between sticky top-0 z-50">
       {/* Logo and Search Bar */}
       <div className="flex items-center space-x-4 w-full justify-between">
-        <h1 className="text-xl font-bold">LMS Portal</h1>
+      <Link to="/" className="text-xl font-bold whitespace-nowrap">
+          LMS Portal
+        </Link>
         <div className="flex justify-center items-center flex-grow ">
-          <input
-            type="text"
-            placeholder="Search courses..."
-            className="sm:block p-2 border border-gray-300 rounded-lg w-full mr-5"
-          />
+        <div className="relative w-full mr-5"> {/* Container for icon and input, relative for absolute positioning of icon */}
+      <div className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"> {/* Icon container, absolute position to place icon inside input */}
+        <Search className="h-5 w-5 text-gray-500" /> {/* Lucid UI Search Icon */}
+      </div>
+      <input
+        type="text"
+        placeholder="Search courses..."
+        className="sm:block p-2 border border-gray-400 hover:border-blue-400 rounded-lg w-full mr-5 pl-8" /* Added pl-8 for padding left to accommodate icon */
+      />
+    </div>
         </div>
       </div>
 
