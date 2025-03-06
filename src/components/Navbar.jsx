@@ -7,18 +7,20 @@ const Navbar = () => {
   return (
     <nav className="bg-white shadow-md p-4 flex items-center justify-between">
       {/* Logo and Search Bar */}
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 w-full justify-between">
         <h1 className="text-xl font-bold">LMS Portal</h1>
-        <input
-          type="text"
-          placeholder="Search courses..."
-          className=" sm:block p-2 border border-gray-300 rounded-lg"
-        />
+        <div className="flex justify-center items-center flex-grow ">
+          <input
+            type="text"
+            placeholder="Search courses..."
+            className="sm:block p-2 border border-gray-300 rounded-lg w-full mr-5"
+          />
+        </div>
       </div>
 
       {/* Large Screen Items */}
       <div className="hidden md:flex items-center space-x-6">
-        <button className="flex items-center space-x-2">
+        <button className="flex items-center space-x-2 whitespace-nowrap">
           <BookOpen size={20} />
           <span>My Learning</span>
         </button>
