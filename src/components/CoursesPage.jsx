@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import CategoryBar from "./CategoryBar";
 
 const courses = [
@@ -49,17 +50,20 @@ const CoursesPage = () => {
       <CategoryBar onCategorySelect={setSelectedCategory} />
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredCourses.map((course) => (
-          <div key={course.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img src={course.image} alt={course.name} className="w-full h-48 object-cover" />
-            <div className="p-4">
-              <h2 className="text-lg font-semibold">{course.name}</h2>
-              <p className="text-gray-600 text-sm mt-2">{course.description}</p>
-              <div className="flex justify-between items-center mt-4">
-                <span className="text-blue-600 font-bold">{course.price}</span>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-md">Enroll</button>
+          <Link to={`/course/${course.id}`} key={course.id}>
+            {/* Navigate to Course Details Page */}
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition">
+              <img src={course.image} alt={course.name} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h2 className="text-lg font-semibold">{course.name}</h2>
+                <p className="text-gray-600 text-sm mt-2">{course.description}</p>
+                <div className="flex justify-between items-center mt-4">
+                  <span className="text-blue-600 font-bold">{course.price}</span>
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-md">Enroll</button>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
